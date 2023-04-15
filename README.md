@@ -10,7 +10,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/VeztWare/Vezt/main/Ve
 [+] AimAssist
 [+] Noclickdelay
 [+] AutoJump
-[+] {From Blatant}.                         
+        [+] {From Blatant}.                         
 [+] Fly
 [+] Speed
 [+] Inf Jump
