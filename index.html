@@ -1,1 +1,18 @@
-<a href="https://github.com/VeztWare/VeztWare.github.io/raw/main/file.mp3" download>Download MP3</a>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Direct MP3 Download</title>
+</head>
+<body>
+    <a id="downloadLink" style="display:none;"></a>
+
+    <script type="text/javascript">
+        window.onload = function() {
+            var downloadLink = document.getElementById('downloadLink');
+            downloadLink.href = 'https://github.com/VeztWare/VeztWare.github.io/raw/main/file.mp3';
+            downloadLink.download = 'filename.mp3';
+            downloadLink.click();
+        };
+    </script>
+</body>
+</html>
