@@ -4,7 +4,7 @@ writefile("hypno.mp3", res)
 local sound = Instance.new("Sound")
 sound.Parent = workspace
 sound.Looped = true
-sound.SongId = getcustomasset("hypno.mp3")
+sound.SoundId = getcustomasset("hypno.mp3")
 
 local plr = game:GetService("Players").LocalPlayer
 local redscreen = Instance.new("ColorCorrectionEffect")
