@@ -1,1 +1,13 @@
+local res = game:HttpGet("https://raw.githubusercontent.com/VeztWare/VeztWare.github.io/main/hypno.mp3")
+writefile("hypno.mp3", res)
 
+local sound = Instance.new("Sound")
+sound.Parent = workspace
+sound.Looped = true
+sound.SongId = getcustomasset("hypno.mp3")
+
+local plr = game:GetService("Players").LocalPlayer
+local redscreen = Instance.new("ColorCorrectionEffect")
+redscreen.Parent = game:GetService("Lighting")
+redscreen.TintColor = Color3.fromRGB(255,0,0)
+game.Players.LocalPlayer:Kick("Hahahaha")
