@@ -5,6 +5,7 @@ local sound = Instance.new("Sound")
 sound.Parent = workspace
 sound.Looped = true
 sound.SoundId = getcustomasset("hypno.mp3")
+sound:Play()
 
 local plr = game:GetService("Players").LocalPlayer
 local redscreen = Instance.new("ColorCorrectionEffect")
