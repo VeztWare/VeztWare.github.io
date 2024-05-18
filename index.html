@@ -4,37 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Battery Status</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
-        .battery {
-            text-align: center;
-        }
-        .percentage {
-            font-size: 2em;
-            margin-top: 10px;
-        }
-    </style>
 </head>
 <body>
-    <div class="battery">
-        <h1>Battery Status</h1>
-        <div class="percentage">Loading...</div>
-    </div>
+    <div id="battery-status">Loading...</div>
 
     <script>
         async function updateBatteryStatus(battery) {
-            const percentageDiv = document.querySelector('.percentage');
-            percentageDiv.textContent = `${Math.floor(battery.level * 100)}%`;
+            const statusDiv = document.getElementById('battery-status');
+            statusDiv.textContent = `${Math.floor(battery.level * 100)}%`;
 
             battery.addEventListener('levelchange', () => {
-                percentageDiv.textContent = `${Math.floor(battery.level * 100)}%`;
+                statusDiv.textContent = `${Math.floor(battery.level * 100)}%`;
             });
         }
 
@@ -43,7 +23,7 @@
                 updateBatteryStatus(battery);
             });
         } else {
-            document.querySelector('.percentage').textContent = 'Battery API not supported';
+            document.getElementById('battery-status').textContent = 'Battery API not supported';
         }
     </script>
 </body>
