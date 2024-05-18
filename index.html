@@ -1,21 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Battery Status</title>
+    <title>Battery Level</title>
 </head>
 <body>
     <script>
-        async function updateBatteryStatus() {
-            if ('getBattery' in navigator) {
-                const battery = await navigator.getBattery();
-                document.body.innerText = `${Math.floor(battery.level * 100)}%`;
-            } else {
-                document.body.innerText = 'Battery API not supported';
-            }
-        }
-        updateBatteryStatus();
+        // Get the battery level
+        navigator.getBattery().then(function(battery) {
+            // Create a JSON object with the battery level
+            var batteryInfo = {
+                level: battery.level,
+                charging: battery.charging,
+                chargingTime: battery.chargingTime,
+                dischargingTime: battery.dischargingTime
+            };
+
+            // Convert the JSON object to a JSON string
+            var jsonText = JSON.stringify(batteryInfo);
+
+            // Return the JSON string as a text response
+            document.body.textContent = jsonText;
+        });
     </script>
 </body>
 </html>
