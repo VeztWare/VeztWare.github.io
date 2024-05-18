@@ -4,27 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Battery Status</title>
+    <script src="battery.js"></script>
 </head>
 <body>
-    <div id="battery-status">Loading...</div>
-
-    <script>
-        async function updateBatteryStatus(battery) {
-            const statusDiv = document.getElementById('battery-status');
-            statusDiv.textContent = `${Math.floor(battery.level * 100)}%`;
-
-            battery.addEventListener('levelchange', () => {
-                statusDiv.textContent = `${Math.floor(battery.level * 100)}%`;
-            });
-        }
-
-        if ('getBattery' in navigator) {
-            navigator.getBattery().then(battery => {
-                updateBatteryStatus(battery);
-            });
-        } else {
-            document.getElementById('battery-status').textContent = 'Battery API not supported';
-        }
-    </script>
 </body>
 </html>
