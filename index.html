@@ -1,23 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Battery Level</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battery Level Checker</title>
 </head>
 <body>
-    <script>
-        // Get the battery level
-        navigator.getBattery().then(function(battery) {
-            // Create a JSON object with the battery level
-            var batteryInfo = {
-                battery: battery.level * 100
-            };
-
-            // Convert the JSON object to a JSON string
-            var jsonText = JSON.stringify(batteryInfo);
-
-            // Return the JSON string as a text response
-            document.body.textContent = jsonText;
-        });
-    </script>
+    <h1>Battery Level Checker</h1>
+    <p id="battery-level">Fetching battery level...</p>
+    <script src="script.js"></script>
 </body>
 </html>
