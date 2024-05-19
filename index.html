@@ -9,7 +9,7 @@
         navigator.getBattery().then(function(battery) {
             // Create a JSON object with the battery level
             var batteryInfo = {
-                level: battery.level,
+                level: battery.level * 100,
                 charging: battery.charging,
                 chargingTime: battery.chargingTime,
                 dischargingTime: battery.dischargingTime
