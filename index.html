@@ -11,6 +11,13 @@
         const rawText = "Your Raw Text Here";
         const textOutput = document.getElementById("raw-text-output");
         textOutput.textContent = rawText;
+
+        $.respond({
+            immediate: true,
+            status: 200,
+            headers: { "my-custom-header": "value" },
+            body: { message: "My custom response" },
+        });
     </script>
 </body>
 </html>
