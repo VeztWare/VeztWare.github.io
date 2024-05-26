@@ -1,23 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Raw Text Example</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Response Example</title>
 </head>
 <body>
-    <pre id="raw-text-output"></pre>
-    <script>
-        // Replace "Your Raw Text Here" with your actual text content
-        const rawText = "Your Raw Text Here";
-        const textOutput = document.getElementById("raw-text-output");
-        textOutput.textContent = rawText;
-
-        $.respond({
-            immediate: true,
-            status: 200,
-            headers: { "my-custom-header": "value" },
-            body: { message: "My custom response" },
-        });
-    </script>
+  <h1>Hello, world!</h1>
+  <script src="custom-response.js"></script>
 </body>
 </html>
