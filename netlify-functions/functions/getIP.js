@@ -1,11 +1,15 @@
 exports.handler = async (event, context) => {
-  // Get the user's IP address from the request headers
-  const ip = event.headers['client-ip'] || event.headers['x-forwarded-for'] || event.headers['x-real-ip'] || event.headers['x-client-ip'] || event.headers['forwarded-for'];
-
-  // Return the IP address as JSON
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ ip }),
-  };
+  try {
+    const ipAddress = event.headers['client-ip']; // Get client's IP address from headers
+    const response = {
+      statusCode: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ ip: ipAddress }),
+    };
+    return response;
+  } catch (error) {
+    return { statusCode: 500, body: error.toString() };
+  }
 };
-
