@@ -1,5 +1,5 @@
 // netlify/functions/battery.js
-const handler = async (event, context) => {
+exports.handler = async (event, context) => {
   const body = JSON.parse(event.body);
   const batteryPercentage = body.batteryPercentage;
 
@@ -15,8 +15,6 @@ const handler = async (event, context) => {
     };
   }
 };
-
-exports.handler = handler;
 
 // Client-side JavaScript
 (async () => {
