@@ -1,18 +1,12 @@
 exports.handler = async (event, context) => {
-  navigator.getBattery()
-    .then(function(battery) {
+  try {
+    const battery = await navigator.getBattery();
+    const batteryLevel = battery.level * 100;
 
-        // Get current battery level .
-        var batteryLevel = battery.level * 100;
-        console.log(batteryLevel);
-    })
-    .catch(function(e) {
-        console.error(e);
-    });
     return {
       statusCode: 200,
       headers: { "Content-Type": "text/plain" },
-      body: batteryLevel,
+      body: `${batteryLevel}%`,
     };
   } catch (error) {
     console.error('Error fetching battery percentage:', error);
