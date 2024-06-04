@@ -1,23 +1,25 @@
 exports.handler = async (event, context) => {
-  try {
-    // Fetch the HTML page from your Netlify site
-    const response = await fetch('https://main--vezt.netlify.app/index.html'); // Replace with your actual Netlify site URL
-    const html = await response.text();
-
-    // Extract the battery percentage from the body content
-    const batteryPercentage = html.trim();
-
+  if (event.httpMethod === 'POST') {
+    try {
+      const { batteryPercentage } = JSON.parse(event.body);
+      return {
+        statusCode: 200,
+        headers: { "Content-Type": "text/plain" },
+        body: `${batteryPercentage}%`,
+      };
+    } catch (error) {
+      console.error('Error parsing request body:', error);
+      return {
+        statusCode: 400,
+        headers: { "Content-Type": "text/plain" },
+        body: 'Invalid request',
+      };
+    }
+  } else {
     return {
-      statusCode: 200,
+      statusCode: 405,
       headers: { "Content-Type": "text/plain" },
-      body: batteryPercentage,
-    };
-  } catch (error) {
-    console.error('Error fetching or parsing HTML:', error);
-    return {
-      statusCode: 500,
-      headers: { "Content-Type": "text/plain" },
-      body: 'Error fetching battery percentage',
+      body: 'Method Not Allowed',
     };
   }
 };
