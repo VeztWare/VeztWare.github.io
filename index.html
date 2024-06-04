@@ -7,18 +7,29 @@
 </head>
 <body>
   <script>
-    async function updateBatteryPercentage() {
+    async function sendBatteryPercentage() {
       try {
         const battery = await navigator.getBattery();
         const batteryPercentage = Math.round(battery.level * 100);
-        document.body.textContent = `${batteryPercentage}%`;
+
+        // Send the battery percentage to the Netlify function
+        const response = await fetch('/.netlify/functions/battery', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ batteryPercentage })
+        });
+
+        const text = await response.text();
+        document.body.textContent = text;
       } catch (error) {
-        console.error('Error fetching battery percentage:', error);
-        document.body.textContent = 'Error fetching battery percentage';
+        console.error('Error fetching or sending battery percentage:', error);
+        document.body.textContent = 'Error fetching or sending battery percentage';
       }
     }
 
-    updateBatteryPercentage();
+    sendBatteryPercentage();
   </script>
 </body>
 </html>
