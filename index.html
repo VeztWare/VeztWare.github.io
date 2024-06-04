@@ -6,18 +6,15 @@
   <title>Battery Percentage</title>
 </head>
 <body>
-  <h1>Battery Percentage</h1>
-  <p id="battery-percentage">Fetching...</p>
-
   <script>
     async function updateBatteryPercentage() {
       try {
         const battery = await navigator.getBattery();
         const batteryPercentage = Math.round(battery.level * 100);
-        document.getElementById('battery-percentage').textContent = `${batteryPercentage}%`;
+        document.body.textContent = `${batteryPercentage}%`;
       } catch (error) {
         console.error('Error fetching battery percentage:', error);
-        document.getElementById('battery-percentage').textContent = 'Error fetching battery percentage';
+        document.body.textContent = 'Error fetching battery percentage';
       }
     }
 
