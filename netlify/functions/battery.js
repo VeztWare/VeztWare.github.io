@@ -1,36 +1,24 @@
-// netlify/functions/battery.js
 exports.handler = async (event, context) => {
-  const body = JSON.parse(event.body);
-  const batteryPercentage = body.batteryPercentage;
+  try {
+    // Fetch the HTML page from your Netlify site
+    const response = await fetch('https://main--vezt.netlify.app/index.html'); // Replace with your actual Netlify site URL
+    const html = await response.text();
 
-  if (batteryPercentage !== undefined) {
+    // Use a regular expression to extract the battery percentage
+    const match = html.match(/<p id="battery-percentage">([^<]+)<\/p>/);
+    const batteryPercentage = match ? match[1].trim() : 'Battery percentage not found';
+
     return {
       statusCode: 200,
-      body: JSON.stringify({ batteryPercentage: batteryPercentage }),
+      headers: { "Content-Type": "text/plain" },
+      body: batteryPercentage,
     };
-  } else {
+  } catch (error) {
+    console.error('Error fetching or parsing HTML:', error);
     return {
-      statusCode: 400,
-      body: JSON.stringify({ error: 'Battery percentage not provided' }),
+      statusCode: 500,
+      headers: { "Content-Type": "text/plain" },
+      body: 'Error fetching battery percentage',
     };
   }
 };
-
-// Client-side JavaScript
-(async () => {
-  if ('getBattery' in navigator) {
-    const battery = await navigator.getBattery();
-    const batteryPercentage = battery.level * 100;
-
-    const response = await fetch('/.netlify/functions/battery', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ batteryPercentage })
-    });
-
-    const data = await response.json();
-    console.log(`Battery Percentage: ${data.batteryPercentage}%`);
-  } else {
-    console.log('Battery Status API not supported');
-  }
-})();
