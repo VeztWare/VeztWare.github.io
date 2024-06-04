@@ -1,12 +1,11 @@
 exports.handler = async (event, context) => {
   try {
     // Fetch the HTML page from your Netlify site
-    const response = await fetch('https://main--vezt.netlify.app/index.html'); // Replace with your actual Netlify site URL
+    const response = await fetch('https://your-netlify-site-url/index.html'); // Replace with your actual Netlify site URL
     const html = await response.text();
 
-    // Use a regular expression to extract the battery percentage
-    const match = html.match(/<p id="battery-percentage">([^<]+)<\/p>/);
-    const batteryPercentage = match ? match[1].trim() : 'Battery percentage not found';
+    // Extract the battery percentage from the body content
+    const batteryPercentage = html.trim();
 
     return {
       statusCode: 200,
