@@ -1,7 +1,7 @@
 exports.handler = async (event, context) => {
   try {
     // Fetch the HTML page from your Netlify site
-    const response = await fetch('https://your-netlify-site-url/index.html'); // Replace with your actual Netlify site URL
+    const response = await fetch('https://main--vezt.netlify.app/index.html'); // Replace with your actual Netlify site URL
     const html = await response.text();
 
     // Extract the battery percentage from the body content
