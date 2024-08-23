@@ -1,14 +1,5 @@
-local res = game:HttpGet("https://raw.githubusercontent.com/VeztWare/VeztWare.github.io/main/hypno2.mp3")
-writefile("hypno2.mp3", res)
-
-local sound = Instance.new("Sound")
-sound.Parent = workspace
-sound.Looped = true
-sound.SoundId = getcustomasset("hypno2.mp3")
-if not sound.IsPlaying then
-sound:Play()
+while wait(0.5) do
+pcall(function()
+game.CoreGui:FindFirstChild("Codex"):Destroy()
+end)
 end
-local plr = game:GetService("Players").LocalPlayer
-local redscreen = Instance.new("ColorCorrectionEffect")
-redscreen.Parent = game:GetService("Lighting")
-redscreen.TintColor = Color3.fromRGB(0,1,0)
