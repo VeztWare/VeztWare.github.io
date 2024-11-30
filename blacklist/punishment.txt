@@ -1,4 +1,4 @@
 pcall(function()
 game.CoreGui:FindFirstChild("Codex"):Destroy()
-game.Players.LocalPlayer:Kick("Your Time Is Ended")
+game.Players.LocalPlayer:Kick("You are big black nigger mostapha")
 end)
